@@ -1,0 +1,44 @@
+name: .NET CI - EnterpriseAI Hub
+
+on:
+  push:
+    branches: [ "main", "master", "develop" ]
+  pull_request:
+    branches: [ "main", "master", "develop" ]
+
+jobs:
+  build-and-test:
+    name: Build and Test (.NET 8)
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Descargar el código fuente del repositorio
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    # 2. Configurar el SDK de .NET 8 en el agente de ejecución
+    - name: Configurar .NET SDK 8.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    # 3. Cachear los paquetes NuGet para acelerar futuras ejecuciones del pipeline
+    - name: Cachear dependencias NuGet
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    # 4. Restaurar las dependencias de los proyectos de la solución
+    - name: Restaurar dependencias
+      run: dotnet restore EnterpriseAI.Hub.sln
+
+    # 5. Compilar la solución en modo Release para verificar errores de sintaxis y tipado
+    - name: Compilar solución
+      run: dotnet build EnterpriseAI.Hub.sln --configuration Release --no-restore
+
+    # 6. Ejecutar todas las pruebas unitarias (Domain.Tests, Application.Tests, etc.)
+    - name: Ejecutar Pruebas Unitarias
+      run: dotnet test EnterpriseAI.Hub.sln --no-restore --verbosity normal --collect:"XPlat Code Coverage"

@@ -1,0 +1,106 @@
+## =====================================
+## .NET 8 / C# / Visual Studio 2022
+## =====================================
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Tt]emp/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+*.dbmdl
+*.jfm
+_ReSharper.*/
+*.resharper
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# ASP.NET Specific
+ipch/
+*[Ee]xpress/
+[Cc]odist/
+
+# NuGet Packages and cache
+*.nupkg
+*.snupkg
+[Pp]ackages/
+[Cc]ache/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Entity Framework Core Migrations SQL scripts
+*.sql
+
+## =====================================
+## Angular / Frontend (Por si agregas el cliente después)
+## =====================================
+
+# Dependencies
+/node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage/
+
+# Production build outputs
+/dist/
+/out-tsc/
+
+# Angular cache
+.angular/
+
+## =====================================
+## Entorno, Secretos y Configuración Sensible
+## =====================================
+
+# Archivos de configuración con credenciales reales (API Keys de OpenAI/Anthropic, cadenas de conexión)
+appsettings.Development.json
+appsettings.json
+*.env
+.env.*
+
+## =====================================
+## Base de Datos Local y Contenedores
+## =====================================
+
+# SQL Server local files o SQLite
+*.mdf
+*.ldf
+*.sqlite
+*.sqlite3
+
+# Docker volumes o datos temporales
+.docker/
+
+## =====================================
+## Sistemas operativos y Editores
+## =====================================
+
+# VS Code (puedes descomentar si usas VS Code exclusivamente, pero es mejor ignorar workspaces locales)
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
