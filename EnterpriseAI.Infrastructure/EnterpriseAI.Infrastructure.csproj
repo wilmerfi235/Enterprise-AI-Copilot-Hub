@@ -12,8 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\ExternalServices\Persistence\Vector\" />
-    <Folder Include="Repositories\ExternalServices\Persistence\Relational\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
