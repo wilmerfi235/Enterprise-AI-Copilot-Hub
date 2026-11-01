@@ -41,12 +41,22 @@ public class AgentSession
     }
 }
 
-// Objeto interno o sub-entidad del agregado
+// 
+/// <summary>
+/// 
+/// Objeto interno o sub-entidad del agregado
+/// Dado que SessionMessage actúa como una colección dependiente dentro de AgentSession, debes indicarle a 
+/// Entity Framework Core mediante Fluent API cómo debe tratar esta relación (como un tipo poseído u Owned Type).
+/// 
+/// </summary>
 public class SessionMessage
 {
-    public string Sender { get; }
-    public string Content { get; }
-    public DateTime Timestamp { get; }
+    public string Sender { get; private set; }
+    public string Content { get; private set; }
+    public DateTime Timestamp { get; private set; }
+
+    // Constructor privado sin parámetros requerido por EF Core
+    private SessionMessage() { }
 
     internal SessionMessage(string sender, string content, DateTime timestamp)
     {
