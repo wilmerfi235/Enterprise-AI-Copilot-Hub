@@ -1,3 +1,4 @@
+using EnterpriseAI.API.Hubs;
 using EnterpriseAI.Application;
 using EnterpriseAI.Infrastructure;
 
@@ -9,6 +10,7 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
+builder.Services.AddSignalR(); // Habilitar SignalR para tiempo real
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -27,5 +29,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<AgentChatHub>("/hubs/agentChat");
 
 app.Run();

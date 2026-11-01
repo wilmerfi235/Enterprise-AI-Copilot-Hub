@@ -29,6 +29,21 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // Configurar AgentSession y su colección dependiente SessionMessage
+        modelBuilder.Entity<AgentSession>(entity =>
+        {
+            entity.HasKey(s => s.Id);
+
+            // Indica a EF Core que SessionMessage es una colección poseída por AgentSession
+            entity.OwnsMany(s => s.Messages, b =>
+            {
+                b.ToTable("AgentSessionMessages"); // Nombre de la tabla resultante en SQL Server
+                b.WithOwner().HasForeignKey("AgentSessionId");
+                b.Property<int>("Id"); // Clave primaria autoincremental para la tabla de mensajes
+                b.HasKey("Id");
+            });
+        });
+
         // Aplica las configuraciones de Fluent API definidas en el ensamblado
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
