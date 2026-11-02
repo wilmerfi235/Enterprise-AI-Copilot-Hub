@@ -33,3 +33,6 @@ app.MapControllers();
 app.MapHub<AgentChatHub>("/hubs/agentChat");
 
 app.Run();
+
+public partial class Program { }
+   
